@@ -1,7 +1,7 @@
 import { Box, AppBar, Toolbar } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "./../../../assets/images/logo.png";
+import logo from "./../../assets/images/logo.png";
 
 const SimpleHeader = () => {
   const navigate = useNavigate();

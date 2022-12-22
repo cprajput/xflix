@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import React, { useContext } from "react";
-import { HomeContext } from "../../../context/Context";
+import { HomeContext } from "../../context/Context";
 import ButtonWrapper from "./ButtonWrapper";
 
 const AgeGroupSection = () => {

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
-import { IVideos } from "../../models/home.model";
+import { IVideos } from "../models/home.model";
 
 interface IProps {
   details: IVideos;

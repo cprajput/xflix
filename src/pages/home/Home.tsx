@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
-import MovieCard from "../components/MovieCard";
 import { TRequest } from "../../models/home.model";
 import { getAllVideosApi } from "../../apis/home.api";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../context/Context";
+import MovieCard from "../../components/MovieCard";
 
 const Home = () => {
   const { videos, handleUpdateVideos, handleUpdateOriginalVideos } =

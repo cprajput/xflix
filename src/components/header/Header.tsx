@@ -1,15 +1,22 @@
 import * as React from "react";
 import { styled, alpha, useTheme } from "@mui/material/styles";
-import { AppBar, Box, Toolbar, InputBase, Grid, Button } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  InputBase,
+  Grid,
+  Button,
+  debounce,
+} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import SearchIcon from "@mui/icons-material/Search";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import GenrePanel from "./GenrePanel";
 import AgeGroupSection from "./AgeGroupSection";
 import UploadForm from "./UploadForm";
-import { HomeContext } from "../../../context/Context";
-import logo from "./../../../assets/images/logo.png";
-import { debounce } from "../../../utils/utils";
+import logo from "./../../assets/images/logo.png";
+import { HomeContext } from "../../context/Context";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

@@ -10,7 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 import ButtonWrapper from "./ButtonWrapper";
-import { HomeContext } from "../../../context/Context";
+import { HomeContext } from "../../context/Context";
 import { Autocomplete } from "@mui/lab";
 
 const GenrePanel = () => {

@@ -1,8 +1,8 @@
 import { Box } from "@mui/system";
 import React, { useMemo } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import SimpleHeader from "../pages/components/header/SimpleHeader";
-import Header from "../pages/components/header/Header";
+import Header from "../components/header/Header";
+import SimpleHeader from "../components/header/SimpleHeader";
 
 const AppLayout = () => {
   const location = useLocation();

@@ -16,7 +16,7 @@ import {
   updateVideoApi,
 } from "../../apis/home.api";
 import { IVideos, TRequest } from "../../models/home.model";
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../../components/MovieCard";
 
 const Video = () => {
   const [currentVideo, setCurrentVideo] = useState<IVideos | null>(null);

@@ -19,10 +19,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import dayjs from "dayjs";
-import { uploadVideoApi } from "../../../apis/home.api";
-import { IFormData } from "../../../models/header.model";
-import { HomeContext } from "../../../context/Context";
-import { TRequest } from "../../../models/home.model";
+import { uploadVideoApi } from "../../apis/home.api";
+import { HomeContext } from "../../context/Context";
+import { IFormData } from "../../models/header.model";
+import { TRequest } from "../../models/home.model";
 
 interface IProps {
   open: boolean;
