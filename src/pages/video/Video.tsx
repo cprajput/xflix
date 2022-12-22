@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Grid,
-  Typography,
-  Divider,
-} from "@mui/material";
+import { Box, Button, Grid, Typography, Divider } from "@mui/material";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -23,8 +16,6 @@ const Video = () => {
   const [currentVideo, setCurrentVideo] = useState<IVideos | null>(null);
   const [videos, setVideos] = useState<IVideos[]>([]);
   const [fetchVideosStatus, setFetchVideosStatus] = useState<TRequest>("idle");
-  const [fetchAllVideosStatus, setFetchAllVideosStatus] =
-    useState<TRequest>("idle");
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -77,24 +68,20 @@ const Video = () => {
     async function getData() {
       setFetchVideosStatus("pending");
 
-      Promise.allSettled([
-        getAllVideosApi(),
-        getVideoDetailsApi(pathName),
-      ]).then((result) => {
-        if (result[0].status === "fulfilled") {
-          setVideos(result[0].value);
-          setFetchAllVideosStatus("fulfilled");
-        } else {
-          setFetchAllVideosStatus("rejected");
-        }
+      Promise.allSettled([getAllVideosApi(), getVideoDetailsApi(pathName)])
+        .then((result) => {
+          if (result[0].status === "fulfilled") {
+            setVideos(result[0].value);
+          }
 
-        if (result[1].status === "fulfilled") {
-          setCurrentVideo(result[1].value);
+          if (result[1].status === "fulfilled") {
+            setCurrentVideo(result[1].value);
+          }
           setFetchVideosStatus("fulfilled");
-        } else {
+        })
+        .catch(() => {
           setFetchVideosStatus("rejected");
-        }
-      });
+        });
     }
 
     getData();
@@ -103,9 +90,9 @@ const Video = () => {
   return (
     <Box>
       <Box component="section" id="videoPlayerSection">
-        <Box>
-          {fetchVideosStatus === "pending" && <VideoLoader />}
-          {fetchVideosStatus === "fulfilled" && (
+        {fetchVideosStatus === "pending" && <VideoLoader />}
+        {fetchVideosStatus === "fulfilled" && (
+          <>
             <iframe
               src={`https://${currentVideo?.videoLink}`}
               title={currentVideo?.title}
@@ -116,21 +103,10 @@ const Video = () => {
                 borderRadius: "4px",
               }}
             ></iframe>
-          )}
-          {fetchVideosStatus === "rejected" && (
-            <Typography>
-              Something went wrong. Failed to fetch videos.
-            </Typography>
-          )}
-        </Box>
-
-        <Box
-          id="videoDetails"
-          sx={{ display: "flex", justifyContent: "space-between", py: 2 }}
-        >
-          {fetchAllVideosStatus === "pending" && <CircularProgress />}
-          {fetchAllVideosStatus === "fulfilled" && (
-            <>
+            <Box
+              id="videoDetails"
+              sx={{ display: "flex", justifyContent: "space-between", py: 2 }}
+            >
               <Box>
                 <Typography variant="h5">{currentVideo?.title}</Typography>
 
@@ -164,10 +140,14 @@ const Video = () => {
                   {currentVideo?.votes.downVotes}
                 </Button>
               </Box>
-            </>
-          )}
-        </Box>
+            </Box>
+          </>
+        )}
       </Box>
+
+      {fetchVideosStatus === "rejected" && (
+        <Typography>Something went wrong. Failed to fetch videos.</Typography>
+      )}
 
       <Divider sx={{ my: 2 }} />
       <Box component="section" id="otherVideosSection">
