@@ -17,6 +17,7 @@ import {
 } from "../../apis/home.api";
 import { IVideos, TRequest } from "../../models/home.model";
 import MovieCard from "../../components/MovieCard";
+import VideoLoader from "../../components/loaders/VideoLoader";
 
 const Video = () => {
   const [currentVideo, setCurrentVideo] = useState<IVideos | null>(null);
@@ -103,7 +104,7 @@ const Video = () => {
     <Box>
       <Box component="section" id="videoPlayerSection">
         <Box>
-          {fetchVideosStatus === "pending" && <CircularProgress />}
+          {fetchVideosStatus === "pending" && <VideoLoader />}
           {fetchVideosStatus === "fulfilled" && (
             <iframe
               src={`https://${currentVideo?.videoLink}`}

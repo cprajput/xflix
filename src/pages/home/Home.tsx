@@ -1,10 +1,11 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { TRequest } from "../../models/home.model";
 import { getAllVideosApi } from "../../apis/home.api";
 import { useNavigate } from "react-router-dom";
 import { HomeContext } from "../../context/Context";
 import MovieCard from "../../components/MovieCard";
+import HomeLoader from "../../components/loaders/HomeLoader";
 
 const Home = () => {
   const { videos, handleUpdateVideos, handleUpdateOriginalVideos } =
@@ -40,7 +41,7 @@ const Home = () => {
   return (
     <Box>
       <Box component="section" id="videos" sx={{ p: 2 }}>
-        {fetchVideosStatus === "pending" && <CircularProgress />}
+        {fetchVideosStatus === "pending" && <HomeLoader />}
 
         {fetchVideosStatus === "rejected" && (
           <Typography>Something went wrong. Failed to fetch videos.</Typography>
